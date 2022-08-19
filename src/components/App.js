@@ -1,6 +1,6 @@
 import '../styles/App.scss';
 import data from '../services/api';
-import { useState} from 'react';
+import {useState} from 'react';
 
 
 function App() {
@@ -8,6 +8,8 @@ function App() {
 const [friendsPhrase, setFriendsPhrase] = useState(data);
 const [newPhrase, setNewPhrase] = useState("");
 const [newCharacter, setNewCharacter] = useState("");
+const [searchPhrase, setSearchPhrase] = useState("");
+const [searchCharacter, setSearchCharacter] = useState("");
 
 const saveNewPhrase = (ev) => {
   setNewPhrase(ev.target.value);
@@ -15,6 +17,14 @@ const saveNewPhrase = (ev) => {
 
 const saveNewCharacter = (ev) => {
   setNewCharacter(ev.target.value);
+}
+
+const searchForPhrase = (ev) => {
+    setSearchPhrase(ev.target.value)
+}
+
+const searchForCharacter = (ev) => {
+  setSearchCharacter(ev.target.value);
 }
 
 const addNewPhraseandCharacter = (ev) => {
@@ -26,7 +36,14 @@ const addNewPhraseandCharacter = (ev) => {
 }
 
 const renderPhrases = () => {
-  return friendsPhrase.map((phrase, index
+  return friendsPhrase
+  .filter((eachPhrase) => {
+    return eachPhrase.quote.toLowerCase().includes(searchPhrase.toLocaleLowerCase());
+  })
+  .filter((eachCharacter) => {
+    return eachCharacter.character.toLocaleLowerCase().includes(searchCharacter.toLocaleLowerCase());
+  })
+  .map((phrase, index
     ) => {
     return <li key={index}>{phrase.quote} - {phrase.character}</li>
   })
@@ -34,6 +51,26 @@ const renderPhrases = () => {
 
   return (
     <div className="App">
+      <label>Filtrar por frase: 
+    <input type="text" 
+    name="name"
+    value={searchPhrase}
+    onChange={searchForPhrase}/>
+  </label>
+  <label>Filtrar por personaje:</label>
+    <select type="text" 
+    name="name"
+    value={searchCharacter}
+    onChange={searchForCharacter}>
+      <option value="">Todos</option>
+      <option value="Ross">Ross</option>
+      <option value="Monica">Monica</option>
+      <option value="Joey">Joey</option>
+      <option value="Phoebe">Phoebe</option>
+      <option value="Chandler">Chandler</option>
+      <option value="Rachel">Rachel</option>
+      </select>
+    
       <h1>Frases de Friends</h1>
       <ul>{renderPhrases()}</ul>
       <h3>Añadir una nueva frase</h3>
