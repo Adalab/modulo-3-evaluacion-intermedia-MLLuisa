@@ -1,6 +1,7 @@
 import '../styles/App.scss';
 import data from '../services/api';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import callToApi from '../services/api';
 
 
 function App() {
@@ -10,6 +11,7 @@ const [newPhrase, setNewPhrase] = useState("");
 const [newCharacter, setNewCharacter] = useState("");
 const [searchPhrase, setSearchPhrase] = useState("");
 const [searchCharacter, setSearchCharacter] = useState("");
+const [dataApi, setDataApi] = useState([]);
 
 const saveNewPhrase = (ev) => {
   setNewPhrase(ev.target.value);
@@ -27,6 +29,12 @@ const searchForCharacter = (ev) => {
   setSearchCharacter(ev.target.value);
 }
 
+useEffect(() => {
+  callToApi().then((response) => {
+    setDataApi(response);
+  });
+}, []);
+
 const addNewPhraseandCharacter = (ev) => {
   ev.preventDefault();
   const newList = {quote: newPhrase, character: newCharacter};
@@ -36,7 +44,7 @@ const addNewPhraseandCharacter = (ev) => {
 }
 
 const renderPhrases = () => {
-  return friendsPhrase
+  return dataApi
   .filter((eachPhrase) => {
     return eachPhrase.quote.toLowerCase().includes(searchPhrase.toLocaleLowerCase());
   })
