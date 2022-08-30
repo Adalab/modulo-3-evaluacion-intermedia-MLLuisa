@@ -1,12 +1,10 @@
 import '../styles/App.scss';
-import data from '../services/api';
 import {useEffect, useState} from 'react';
 import callToApi from '../services/api';
 
 
 function App() {
 
-const [friendsPhrase, setFriendsPhrase] = useState(data);
 const [newPhrase, setNewPhrase] = useState("");
 const [newCharacter, setNewCharacter] = useState("");
 const [searchPhrase, setSearchPhrase] = useState("");
@@ -37,11 +35,17 @@ useEffect(() => {
 
 const addNewPhraseandCharacter = (ev) => {
   ev.preventDefault();
-  const newList = {quote: newPhrase, character: newCharacter};
-  setFriendsPhrase([...friendsPhrase, newList])
+  if(newPhrase === "" || newCharacter === "") {
+    alert('Tienes que rellenar ambos campos, de "Frase" y de "Personaje!!"');
+    return false
+  } else {
+    const newList = {quote: newPhrase, character: newCharacter};
+  setDataApi([...dataApi, newList])
   setNewCharacter("");
   setNewPhrase("");
+  }
 }
+
 
 const renderPhrases = () => {
   return dataApi
