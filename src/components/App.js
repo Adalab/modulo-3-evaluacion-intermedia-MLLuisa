@@ -51,44 +51,51 @@ const renderPhrases = () => {
 
   return (
     <div className="App">
-      <label>Filtrar por frase: 
-    <input type="text" 
-    name="name"
-    value={searchPhrase}
-    onChange={searchForPhrase}/>
-  </label>
-  <label>Filtrar por personaje:</label>
-    <select type="text" 
-    name="name"
-    value={searchCharacter}
-    onChange={searchForCharacter}>
-      <option value="">Todos</option>
-      <option value="Ross">Ross</option>
-      <option value="Monica">Monica</option>
-      <option value="Joey">Joey</option>
-      <option value="Phoebe">Phoebe</option>
-      <option value="Chandler">Chandler</option>
-      <option value="Rachel">Rachel</option>
-      </select>
+      <form className=''>
+        <label>Filtrar por frase: 
+          <input type="text" 
+                name="name"
+                value={searchPhrase}
+                onChange={searchForPhrase}/>
+        </label>
+      </form>
+      <form>
+        <label>Filtrar por personaje:
+
+        </label>
+          <select type="text" 
+                  name="name"
+                  value={searchCharacter}
+                  onChange={searchForCharacter}>
+                  <option value="">Todos</option>
+                  <option value="Ross">Ross</option>
+                  <option value="Monica">Monica</option>
+                  <option value="Joey">Joey</option>
+                  <option value="Phoebe">Phoebe</option>
+                  <option value="Chandler">Chandler</option>
+                  <option value="Rachel">Rachel</option>
+          </select>
+      </form>
+  
     
       <h1>Frases de Friends</h1>
       <ul>{renderPhrases()}</ul>
       <h3>Añadir una nueva frase</h3>
       <form>
-      <label>
-    Frase:
-    <input type="text" 
-    name="name"
-    value={newPhrase} 
-    onChange={saveNewPhrase}/>
-  </label>
-  <label>
-    Personaje:
-    <input type="text" 
-    name="name" 
-    value={newCharacter}
-    onChange={saveNewCharacter}/>
-  </label>
+        <label>
+          Frase:
+          <input type="text" 
+                  name="name"
+                  value={newPhrase} 
+                  onChange={saveNewPhrase}/>
+        </label>
+        <label>
+          Personaje:
+          <input type="text" 
+                  name="name" 
+                  value={newCharacter}
+                  onChange={saveNewCharacter}/>
+        </label>
       </form>
       <button 
       onClick={addNewPhraseandCharacter}>Añadir una nueva frase</button>
