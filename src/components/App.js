@@ -52,15 +52,16 @@ const renderPhrases = () => {
   return (
     <div className="App">
       <form className=''>
-        <label>Filtrar por frase: 
+        <label htmlFor='text'>Filtrar por frase: 
           <input type="text" 
                 name="name"
+                id='text'
                 value={searchPhrase}
                 onChange={searchForPhrase}/>
         </label>
       </form>
       <form>
-        <label>Filtrar por personaje:
+        <label htmlFor='text'>Filtrar por personaje:
 
         </label>
           <select type="text" 
@@ -82,10 +83,11 @@ const renderPhrases = () => {
       <ul>{renderPhrases()}</ul>
       <h3>Añadir una nueva frase</h3>
       <form>
-        <label>
+        <label htmlFor='text'>
           Frase:
           <input type="text" 
                   name="name"
+                  id='text'
                   value={newPhrase} 
                   onChange={saveNewPhrase}/>
         </label>
