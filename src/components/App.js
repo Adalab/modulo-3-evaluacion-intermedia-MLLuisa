@@ -51,6 +51,10 @@ const renderPhrases = () => {
 
   return (
     <div className="App">
+      <header>
+        <h1 className='title'>Frases de Friends</h1>
+      </header>
+      
       <form className=''>
         <label htmlFor='text'>Filtrar por frase: 
           <input type="text" 
@@ -78,8 +82,6 @@ const renderPhrases = () => {
           </select>
       </form>
   
-    
-      <h1>Frases de Friends</h1>
       <ul>{renderPhrases()}</ul>
       <h3>Añadir una nueva frase</h3>
       <form>
